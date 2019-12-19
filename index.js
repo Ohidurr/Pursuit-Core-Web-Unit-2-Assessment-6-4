@@ -6,9 +6,8 @@ document.addEventListener("DOMContentLoaded",() =>{
 
 const getMovie = async() => {
     try{
-        
         let res = await axios.get(`https://ghibliapi.herokuapp.com/films/`)
-          let info = res.data
+        let info = res.data
         console.log(info); 
         
     }catch(error){
@@ -20,14 +19,11 @@ const getMovie = async() => {
 
 }
 getMovie()
-select.addEventListener("change",(e)=> {
-    select.value = e.target.value
-    debugger
- })
+
     const populateSelect = async() => {
         let res  = await axios.get("https://ghibliapi.herokuapp.com/films/")
         let info = res.data
-        console.log(res.data[0].title);
+        // console.log(res.data[0].title);
         
         for(let i = 0; i < info.length; i++){
     
@@ -40,8 +36,28 @@ select.addEventListener("change",(e)=> {
     }
     
     populateSelect()
-    const postMovie = () => {
-        
-        
+    const postMovie = async() => {
+        let res  = await axios.get("https://ghibliapi.herokuapp.com/films/")
+        let info = res.data
+        // info.forEach(el => {
+        //     el.release_date;
+        //     console.log(el.release_date);
+            
+        // })
+        let h3 = document.createElement("h3")
+        let p  = document.createElement("p")
+        select.addEventListener("change",(e)=> {
+            select.value = e.target.value
+            
+            console.log(info[select.value].release_date); 
+            console.log(info[select.value].description); 
+
+            document.body.appendChild(h3)
+
+         })
+        // select.value  = info[i].release_date;
+        // info[i].release_date.appendChild(h3)
+               
     }
+    postMovie()
 })

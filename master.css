@@ -1,3 +1,10 @@
 body{
-    background-color: purple;
+    background-color: lavender;
+}
+
+
+img{
+    width: 70%;
+    height:170px;
+    background-color:skyblue;
 }
