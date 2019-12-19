@@ -7,22 +7,41 @@ document.addEventListener("DOMContentLoaded",() =>{
 const getMovie = async() => {
     try{
         
-        let res = await axios.get(`https://ghibliapi.herokuapp.com/films`)
-        let info = res.data.title
-        console.log(info);
-        
-        
+        let res = await axios.get(`https://ghibliapi.herokuapp.com/films/`)
+          let info = res.data
+        console.log(info); 
         
     }catch(error){
         console.log(error);
         debugger
         }
-    select.addEventListener("change",(e)=> {
-        getMovie()
-            select.value = e.target.value
-            select.appendChild(form)
-        })
-getMovie()
-debugger
+
+    
+
 }
+getMovie()
+select.addEventListener("change",(e)=> {
+    select.value = e.target.value
+    debugger
+ })
+    const populateSelect = async() => {
+        let res  = await axios.get("https://ghibliapi.herokuapp.com/films/")
+        let info = res.data
+        console.log(res.data[0].title);
+        
+        for(let i = 0; i < info.length; i++){
+    
+        let option = document.createElement("option")
+        option.innerText = info[i].title
+        option.value = i
+        select.appendChild(option)
+            
+        }
+    }
+    
+    populateSelect()
+    const postMovie = () => {
+        
+        
+    }
 })
